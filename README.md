@@ -2,30 +2,24 @@
 
 1、 配置文件目录conf/
     
-    |chnl/              : 渠道配置目录
-    |    cardsv.conf    : 渠道商cardsv的配置, 包含host/port/codec
-    |    ryx.conf       : 渠道商ryx的配置,同cardsv
-    |    t/             : 测试目录
-    |        |co.req    : 测试请求数据(解包后的)
-    |        |co.res    : 测试应答数据(解包后的)
-    |bank/              : 银行配置目录
-    |    |spd.conf      : 银行-spd配置, 包括host/port/codec
-    |    |spd.simu      : 银行-spd模拟器开发, 包括pack/unpack/tcode/debug_req/debug_res
-    |    |spd/          : 银行-spd配置
-    |        |co.c2b    : 银行-spd定制开发接口c2b(渠道请求--->银行请求)
-    |        |co.b2c    : 银行-spd定制开发接口b2c(银行应答--->渠道应答)
-    |        |co.req    : 银行-spd模拟请求数据
-    |        |co.simu   : 银行-spd交易模拟器-co交易模拟处理开发
-    |zpos.conf          : 应用主配置: db/chnl/bank
-    |zeta.conf          : zeta配置
-    |chnl.conf          : 渠道配置文件, 包含host/port/codec
-    |chnl.simu          : 渠道的模拟器配置, 包含pack/unpack/tcode/debug_req/debug_res
-    |bank.conf          : 银行配置, 此文件将读取bank/目录下每个银行的配置文件
+    |nacd/           : nacd配置
+    |    east.conf   : 东部-nacd, 包含host/port/codec
+    |    head.conf   : 总部-nacd, 
+    |    nc.conf     : 华北-nacd,   north china
+    |    ne.conf     : 东北部-nacd, north east
+    |    nw.conf     : 西北部-nacd, north west
+    |    sc.conf     : 中南-nacd,   south center
+    |    west.conf   : 西部-nacd,   西部
+    |
+    |zpos.conf       : 应用主配置
+    |zeta.conf       : zeta配置
+    |8583.conf       : 8583配置文件
+    |nacd.conf       : 加载nacd目录下的配置
 
 2、 bin目录
 
-    tsimu  : 用来测试银行模拟器交易的
-    tchnl  : 渠道交易测试(发起渠道商交易请求到zpos应用)
+    tsimu  : zero模拟器
+    tpos   : pos模拟器
     tperf  : 性能测试工具
 
 3、 libexec目录
@@ -43,13 +37,17 @@
     
 5、 log目录
     
-    Zsimu.log              : 模拟器日志
-    Zworker.N.log          : 第N个工作进程日志
-    Zchnl.CHNL_NAME.N.log  : 第N个工作进程的某个渠道日志
-    Zbank.BANK_NAME.N.log  : 第N个工作进程的某个银行日志
-    Zbackend.log           : 测试用-后线流水同步进程
-    Zmagent.log            : 监控节点进程日志
-    Zstomp.log             : 测试用-可靠消息队列
+    Zsimu.log          : zero模拟器日志
+    Znacd.east.log     : 
+    Znacd.head.log     :
+    Znacd.nc.log       :
+    Znacd.ne.log       :
+    Znacd.nw.log       :
+    Znacd.sc.log       :
+    Znacd.west.log     :
+    Ztran.N.log        : 第N个工作进程的某个渠道日志
+    Zmagent.log        : 监控节点进程日志
+    Zstomp.log         : 测试用-可靠消息队列
 
 6、 t目录
 

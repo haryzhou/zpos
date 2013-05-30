@@ -1,0 +1,7 @@
+#!/bin/bash
+
+cd $ZPOS_HOME/log;
+
+zeta -f $ZPOS_HOME/conf/zeta.conf;
+
+

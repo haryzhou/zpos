@@ -1,0 +1,6 @@
+#!/bin/bash
+
+kill `cat $ZPOS_HOME/log/zeta.pid`;
+rm -fr $ZPOS_HOME/log/zeta.pid;
+
+

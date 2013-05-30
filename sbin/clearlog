@@ -1,0 +1,2 @@
+cd $ZPOS_HOME/log;
+rm -fr *.log;

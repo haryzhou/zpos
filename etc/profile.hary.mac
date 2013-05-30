@@ -1,0 +1,36 @@
+export ZETA_HOME=$HOME/workspace/zeta
+export ZPOS_HOME=$HOME/workspace/zpos
+export PERL5LIB=$ZETA_HOME/lib:$ZPOS_HOME/lib
+export PLUGIN_PATH=$ZPOS_HOME/plugin
+export PATH=$ZPOS_HOME/bin:$ZPOS_HOME/sbin:$ZETA_HOME/bin:$PATH
+
+# 节点号
+export ZPOS_ID=0;
+
+# 在线库
+export DB_NAME=zdb_dev
+export DB_USER=ypinst
+export DB_PASS=ypinst
+export DB_SCHEMA=ypinst
+alias dbbc='db2 connect to $DB_NAME_BKE user $DB_USER_BKE using $DB_PASS_BKE'
+
+# 后线库
+export DB_NAME_BKE=zdb_dev
+export DB_USER_BKE=ypinst
+export DB_PASS_BKE=ypinst
+export DB_SCHEMA_BKE=backend
+alias dbc='db2 connect to $DB_NAME user $DB_USER using $DB_PASS'
+
+# 目录转换
+alias cdl='cd $ZPOS_HOME/log';
+alias cdd='cd $ZPOS_HOME/data';
+alias cdlb='cd $ZPOS_HOME/lib/ZPOS';
+alias cdle='cd $ZPOS_HOME/libexec';
+alias cdb='cd $ZPOS_HOME/bin';
+alias cdsb='cd $ZPOS_HOME/sbin';
+alias cdc='cd $ZPOS_HOME/conf';
+alias cde='cd $ZPOS_HOME/etc';
+alias cdt='cd $ZPOS_HOME/t';
+alias cdh='cd $ZPOS_HOME';
+alias cdtb='cd $ZPOS_HOME/sql/table';
+

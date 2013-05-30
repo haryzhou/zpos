@@ -1,0 +1,15 @@
+#!/bin/bash
+
+# 停止应用
+if [ -f "$ZPOS_HOME/log/zeta.pid" ]; then 
+    kill `cat $ZPOS_HOME/log/zeta.pid`;
+fi
+rm -fr $ZPOS_HOME/log/zeta.pid;
+
+# 清理日志
+cd $ZPOS_HOME/log;
+rm -fr *.log;
+
+zeta -f $ZPOS_HOME/conf/zeta.conf;
+
+

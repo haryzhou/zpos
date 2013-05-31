@@ -23,11 +23,12 @@
 
 3、 libexec目录
 
-    plugin.pl  :  加载插件+应用配置
-    main.pl    :  主控函数
-    tran.pl    :  交易处理进程
-    simu.pl    :  zero交易系统模拟器
-    magent.pl  :  监控节点进程
+    plugin.pl     :  加载插件+应用配置
+    main.pl       :  主控函数
+    tran.pl       :  交易处理进程
+    simu-zero.pl  :  zero交易系统模拟器
+    simu-nac.pl   :  nac模拟器
+    magent.pl     :  监控节点进程
 
 4、 etc目录
 
@@ -36,13 +37,15 @@
 5、 log目录
     
     Zsimu.log          : zero模拟器日志
-    Znacd.east.log     : 
-    Znacd.head.log     :
-    Znacd.nc.log       :
-    Znacd.ne.log       :
-    Znacd.nw.log       :
-    Znacd.sc.log       :
-    Znacd.west.log     :
+    Znacd.east.log     : 通信日志
+    Znacd.head.log     : 通信日志   
+    Znacd.nc.log       : 通信日志 
+    Znacd.ne.log       : 通信日志 
+    Znacd.nw.log       : 通信日志 
+    Znacd.sc.log       : 通信日志 
+    Znacd.west.log     : 通信日志 
+    Zsimu-zero.log     : 交易系统zero模拟器
+    Zsimu-nac.log      : nac模拟器
     Ztran.N.log        : 第N个工作进程的某个渠道日志
     Zmagent.log        : 监控节点进程日志
     Zstomp.log         : 测试用-可靠消息队列

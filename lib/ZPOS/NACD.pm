@@ -48,8 +48,8 @@ sub spawn {
             $self => { 
                 on_nac_packet    => 'on_nac_packet',    # 收到NAC报文
                 on_nac_response  => 'on_nac_response',  # 响应NAC
-                on_accept        => 'on_accept',         # NAC连接
-                on_la_error      => 'on_la_error',       # accept错误
+                on_accept        => 'on_accept',        # NAC连接
+                on_la_error      => 'on_la_error',      # accept错误
                 on_nac_flush     => 'on_nac_flush',     # flush event
                 on_nac_error     => 'on_nac_error',     # NAC关闭连接
 

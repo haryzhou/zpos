@@ -6,7 +6,12 @@ use POE::Filter::Block;
 use IO::Socket::INET;
 use Zeta::Codec::Frame qw/ascii_n binary_n/;
 
+#
+# 管理交易-交易代码
+#
 my %tmap = (
+    '800.001.002'  => 'si',    # 签到
+    '800.001.002'  => 'so',    # 签退
 );
 
 #
@@ -26,7 +31,9 @@ sub new {
 sub spawn {
 
     my ($self, $zcfg, $logger, $nacd) = @_;
-
+    $self->{zcfg}   = $zcfg;
+    $self->{logger} = $logger;
+    $self->{nacd}   = $nacd;
 
     # 建立tran
     return POE::Session->create(
@@ -94,7 +101,7 @@ sub on_sero {
 }
 
 #
-# pos签到
+# pos签到:  密码钥下发, 终端程序更新(tms)
 #
 sub sign_in {
     my ($self, $src, $tpdu, $preq) = @_; 
@@ -125,9 +132,9 @@ sub zero {
          Filter     => POE::Filter::Block->new( LengthCodec => ascii_n(4),
     );
     $_[HEAP]{zero}{$zw->ID} = {
-        wheel => $zw,
-        nacd  => $src,
-        tpdu  => $tpdu,
+        wheel => $zw,    # zero传送带
+        nacd  => $src,   # 来自那个nacd
+        tpdu  => $tpdu,  #  
     };
 
     # 组zero报文
@@ -136,7 +143,6 @@ sub zero {
     # 发送zero报文 
     $zw->put($zreq);
 }
-
 
 1;
 

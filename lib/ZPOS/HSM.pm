@@ -77,6 +77,5 @@ sub on_vmac {
 sub call_hsm {
 }
 
-
 1;
 

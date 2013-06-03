@@ -3,7 +3,11 @@ use strict;
 use warnings;
 use POE;
 
-
+#---------------------------------------------------------------------------
+#                            NAC模拟器
+# -----                       -----                            ------
+# |POS|----tel+head+8583----->|NAC|<----skey+tel+head+8583---->|POSP|
+# -----                       -----                            ------
 #
 # name => 'head',
 # posp => {
@@ -13,10 +17,13 @@ use POE;
 # },
 # nac => {
 # },
-#
+#---------------------------------------------------------------------------
 sub new {
 }
 
+#
+# $self->{$zcfg, $logger)
+#
 sub spawn {
     my ($self, $zcfg, $logger) = @_;
     $self->{logger} = $logger;
@@ -46,13 +53,15 @@ sub spawn {
 # 连接posp
 #
 sub on_connect_posp {
+    my $self = $_[OBJECT];
     my $psock = IO::Socket::INET->new(
+        PeerAddr  => $self->{posp}{host},
+        PeerPort  => $self->{posp}{port},
     );
     unless($psock) {
         $_[KERNEL]->delay('on_connect_posp' => 1);
         return 1;
     }
- 
     my $pw = POE::Wheel::ReadWrite->new(
         Handle     => $psock,
         InputEvent => 'on_posp_packet',
@@ -76,7 +85,7 @@ sub on_accept {
 }
 
 #
-# 收到pos发送的报文:  添加nac头部
+# 收到pos发送的报文: tel + head + 8583
 #
 sub on_pos_packet {
     my ($packet, $id) = @_[ARG0, ARG1];
@@ -89,7 +98,9 @@ sub on_pos_packet {
 #
 # 响应pos终端完毕
 #
-sub on_pos_flush { delete $_[HEAP]{pos}{$_[ARG0]};  }
+sub on_pos_flush { 
+    delete $_[HEAP]{pos}{$_[ARG0]};  
+}
  
 
 #
@@ -102,7 +113,7 @@ sub on_pos_error {
 }
 
 #
-# 收到posp的报文
+# 收到posp的报文: skey + head + 8583
 #
 sub on_posp_packet {
     my ($packet, $id) = @_[ARG0, ARG1];    

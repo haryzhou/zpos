@@ -22,6 +22,8 @@ sub {
     # 获取配置与日志
     my $zcfg = zkernel->zconfig();
     my $logger = zlogger;
+
+    # 获取nacd管道
     my %nacd;
     for $name (keys %{$zcfg->{nacd}}) {
         $nacd{$name} = zkernel->channel_writer($name);

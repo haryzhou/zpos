@@ -8,7 +8,7 @@ use POE::Wheel::ReadLine;
 use POE::Filter::Block;
 use POE::Filter::HTTP::Parser;
 use IO::Socket::INET;
-use Zeta::Codec::Frame qw/ascii_n binary_n/;
+use Zeta::Codec::Frame qw/ascii_n/;
 
 # 读指定NACD的配置文件: host/port
 my $ncfg = do "$ENV{ZPOS_HOME}/conf/nacd/head.conf";
@@ -103,7 +103,7 @@ POE::Session->create(
             $_[HEAP]{nw} = $nw;
             warn "3> send>>>>>>>>:\n" . $simu->{debug_req}->($req{$input});
             $nw->put($simu->{pack}->($req{$input}));
-            $req{$input} =  do "$ENV{ZPOS_HOME}/conf/chnl/t/$input.req";
+            $req{$input} =  do "$ENV{ZPOS_HOME}/conf/tpos/$input.req";
         },
 
         on_response => sub {
@@ -116,11 +116,4 @@ POE::Session->create(
 
 $poe_kernel->run();
 exit 0;
-
-sub usage {
-   die <<EOF;
-tpos -c cardsv
-EOF
-}
-
 
